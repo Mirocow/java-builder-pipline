@@ -76,8 +76,10 @@ class Builder {
 			}
 
 			// Запуск сборки              
-			script.bat label: '', script: context.UnityFolder + unityVersion + '/Editor/unity.exe -projectPath "' + context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + 
-			    '" -executeMethod ' + context.UnityExecuteMethod + ' -logFile "UnityEditor.log" -buildTarget ' + buildTarget + ' -quit -batchmode -quitTimeout 6000'
+			script.bat label: '', script: context.UnityFolder + unityVersion + '/Editor/unity.exe -projectPath "' + 
+                context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + 
+			    '" -executeMethod ' + context.UnityExecuteMethod + 
+                ' -logFile "UnityEditor.log" -buildTarget ' + buildTarget + ' -quit -batchmode -quitTimeout 6000'
 			
 			// Проверка на наличие папки с билдом
 			def folderPath = "${script.params.WORKSPACE}/${JOB_BASE_NAME}/Builds/" + context.BuildName
