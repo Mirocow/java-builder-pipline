@@ -14,15 +14,15 @@ class Builder {
 	def CleanUpBeforeBuild(GlobalContext context)
 	{
 		println "CleanUpBeforeBuild"
-		dir(context.ProjectFolder + '/Builds') 
+		script.dir(context.ProjectFolder + '/Builds') 
 		{
-			deleteDir()
+			script.deleteDir()
 		}
 		if (params.CleanLibrary)
 		{
-			dir(context.ProjectFolder + '/Library') 
+			script.dir(context.ProjectFolder + '/Library') 
 			{
-				deleteDir()
+				script.deleteDir()
 			}
 		}
 		
