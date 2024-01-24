@@ -51,7 +51,7 @@ class Builder {
 		
 		def fileName = context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + '/ProjectSettings/ProjectVersion.txt'
 		println fileName
-		def file = readFile fileName
+		def file = script.readFile fileName
 		def lines = file.readLines()
 		def text = lines[0].split(' ')        
 		print 'Unity version: ' + text[1]
