@@ -1,6 +1,5 @@
 #!/usr/bin/env groovy
-
-package org.combine;
+package org.combine
 
 class GlobalContext
 {

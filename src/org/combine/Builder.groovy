@@ -1,8 +1,7 @@
 #!/usr/bin/env groovy
+package org.combine
 
-package org.combine;
-
-import org.combine.GlobalContext;
+import org.combine.GlobalContext
 
 class Builder {
 
