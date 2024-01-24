@@ -6,7 +6,7 @@ class GlobalContext
 	// Unity
 	def UnityFolder = 'C:/Program Files/Unity/Hub/Editor/'
 	def MacUnityFolder = '/applications/unity/hub/editor/'
-	def UnityExecuteMethod = 'ProjectBuilder.BuildWindows'
+	def UnityExecuteMethod = 'BuildProject.BuildWindows'
 	def MacUnityVersion = '2022.3.17f1'
 	def OverrideUnityVersion = ''
 
