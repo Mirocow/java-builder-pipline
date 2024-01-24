@@ -3,14 +3,14 @@ package org.combine
 
 class GlobalContext
 {
-    // Unity
+	// Unity
 	def UnityFolder = 'C:/Unity/'
 	def MacUnityFolder = '/applications/unity/hub/editor/'
 	def UnityExecuteMethod = 'ProjectBuilder.BuildWindows'
 	def MacUnityVersion = '2019.3.9f1'
 	def OverrideUnityVersion = ''
 
-    // Переменные, устанавливаемые во время сборки
+	// Переменные, устанавливаемые во время сборки
 	def ExecutingPlatform = "Windows"
 	def errorMessage = ""
 	def ProjectFolder = "UnknownProjectFolder" // В эту папку скачивается проект. Устанавливается в SCM шаге
