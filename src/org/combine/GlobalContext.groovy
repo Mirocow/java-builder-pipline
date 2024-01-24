@@ -4,10 +4,10 @@ package org.combine
 class GlobalContext
 {
 	// Unity
-	def UnityFolder = 'C:/Unity/'
+	def UnityFolder = 'C:/Program Files/Unity/Hub/Editor/2022.3.17f1/'
 	def MacUnityFolder = '/applications/unity/hub/editor/'
 	def UnityExecuteMethod = 'ProjectBuilder.BuildWindows'
-	def MacUnityVersion = '2019.3.9f1'
+	def MacUnityVersion = '2022.3.17f1'
 	def OverrideUnityVersion = ''
 
 	// Переменные, устанавливаемые во время сборки
