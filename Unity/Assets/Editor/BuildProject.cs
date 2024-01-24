@@ -1,11 +1,10 @@
+// -------------------------------------------------------------------------------------------------
+// Assets/Editor/JenkinsBuild.cs
+// -------------------------------------------------------------------------------------------------
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using UnityEditor.Build.Reporting;
-using System;
-using System.Collections;
-using System.IO;
-using UnityEditor.Build;
   
 // ------------------------------------------------------------------------
 // https://docs.unity3d.com/Manual/CommandLineArguments.html
@@ -130,16 +129,10 @@ public class BuildProject {
             System.Console.WriteLine("[JenkinsBuild] Build Failed: Time:" + buildSummary.totalTime + " Total Errors:" + buildSummary.totalErrors);
         }		
     }
-
-    private static string ProjectPath 
-	{
-        get { return Application.dataPath.Substring (0, Application.dataPath.LastIndexOf ('/')); }
-    }	
  
     private class Args
     {		
         public string appName = "AppName";
-        public string targetDir = ProjectPath + "/" + "Output";
-		Directory.CreateDirectory (targetDir);
+        public string targetDir = Application.dataPath + "/" + "Output";
     }
 }
