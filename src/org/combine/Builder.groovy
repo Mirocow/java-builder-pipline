@@ -72,7 +72,7 @@ class Builder {
 			def exists = script.fileExists unityExe
 			if (!exists)
 			{
-				error('Can\'t find Unity version: ' + unityVersion + '. Please, check Notion for more information: https://www.notion.so/helloio/Unity-02ce4afae3f24fdc8565f96d7d37a6c0')
+				error('Can\'t find Unity version: ' + unityVersion + ". Path ${unityExe}")
 			}
 
 			// Запуск сборки              
