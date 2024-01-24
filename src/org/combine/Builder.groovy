@@ -44,8 +44,8 @@ class Builder {
 	def GetUnityVersion(GlobalContext context)
 	{
 		// TODO: пока не работает чтение файлов, на маке задаем версию Unity в контексте
-		//	if (context.ExecutingPlatform == "Mac")
-		//		return context.MacUnityVersion
+		if (context.ExecutingPlatform == "Mac")
+				return context.MacUnityVersion
 		if (context.OverrideUnityVersion != '')
 			return context.OverrideUnityVersion
 		
@@ -54,7 +54,7 @@ class Builder {
 		def file = script.readFile fileName
 		def lines = file.readLines()
 		def text = lines[0].split(' ')        
-		print 'Unity version: ' + text[1]
+		println 'Unity version: ' + text[1]
 		return text[1]
 	}
 
