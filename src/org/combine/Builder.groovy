@@ -28,7 +28,7 @@ class Builder {
 		
 		def logFile = "\"${script.params.WORKSPACE}/UnityEditor.log\""
         println "Logfile: ${logFile}"
-		deleteFile(context, logFile)
+		script.deleteFile(context, logFile)
 	}
 
 	def GetUnityVersion(GlobalContext context)
