@@ -5,6 +5,12 @@ import org.combine.GlobalContext
 
 class Builder {
 
+    private final Script script
+
+    Builder(Script script) {
+        this.script = script
+    }    
+
 	def CleanUpBeforeBuild(GlobalContext context)
 	{
 		println "CleanUpBeforeBuild"
@@ -43,7 +49,7 @@ class Builder {
 
 	def BuildUnity(GlobalContext context, buildTarget)
 	{
-		stage('Build ' + buildTarget)
+		script.stage('Build ' + buildTarget)
 		{
 			println "================= Starting Unity build (on WIndows) ============================="
 			CleanUpBeforeBuild(context)
