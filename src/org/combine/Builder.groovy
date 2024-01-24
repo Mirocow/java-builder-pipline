@@ -26,7 +26,7 @@ class Builder {
 			}
 		}
 		
-		def logFile = "\"${WORKSPACE}/UnityEditor.log\""
+		def logFile = "\"${script.params.WORKSPACE}/UnityEditor.log\""
 		deleteFile(context, logFile)
 	}
 
@@ -38,7 +38,7 @@ class Builder {
 		if (context.OverrideUnityVersion != '')
 			return context.OverrideUnityVersion
 		
-		def fileName = context.GetUnityProjectAbsolutePath(WORKSPACE) + '/ProjectSettings/ProjectVersion.txt'
+		def fileName = context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + '/ProjectSettings/ProjectVersion.txt'
 		println fileName
 		def file = readFile fileName
 		def lines = file.readLines()
@@ -65,11 +65,11 @@ class Builder {
 			}
 
 			// Запуск сборки
-			bat label: '', script: context.UnityFolder + unityVersion + '/Editor/unity.exe -projectPath "' + context.GetUnityProjectAbsolutePath(WORKSPACE) + 
+			bat label: '', script: context.UnityFolder + unityVersion + '/Editor/unity.exe -projectPath "' + context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + 
 			'" -executeMethod ' + context.UnityExecuteMethod + ' -logFile "UnityEditor.log" -buildTarget ' + buildTarget + ' -quit -batchmode -quitTimeout 6000'
 			
 			// Проверка на наличие папки с билдом
-			def folderPath = "${WORKSPACE}/${JOB_BASE_NAME}/Builds/" + context.BuildName
+			def folderPath = "${script.params.WORKSPACE}/${JOB_BASE_NAME}/Builds/" + context.BuildName
 			if (buildTarget == "Android")
 				folderPath = context.ProjectFolder + '\\Builds\\' + context.BuildName + '.apk'
 			
