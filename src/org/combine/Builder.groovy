@@ -18,7 +18,7 @@ class Builder {
 		{
 			script.deleteDir()
 		}
-		if (params.CleanLibrary)
+		if (script.params.CleanLibrary)
 		{
 			script.dir(context.ProjectFolder + '/Library') 
 			{
