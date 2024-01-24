@@ -33,7 +33,7 @@ class Builder {
 
 	def deleteFile(GlobalContext context, String path)
 	{
-        if (fileExists(path)) {
+        if (script.fileExists(path)) {
             // echo "File ${path} already exists. Deleting"
             new File(path).delete()
         } else {
