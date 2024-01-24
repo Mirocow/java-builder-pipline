@@ -28,8 +28,18 @@ class Builder {
 		
 		def logFile = "\"${script.params.WORKSPACE}/UnityEditor.log\""
         println "Logfile: ${logFile}"
-		deleteFile(logFile)
+		deleteFile(context, logFile)
 	}
+
+	def deleteFile(GlobalContext context, String path)
+	{
+        if (fileExists(path)) {
+            // echo "File ${path} already exists. Deleting"
+            new File(path).delete()
+        } else {
+            // echo "File ${path} does not exist."
+        }
+    }
 
 	def GetUnityVersion(GlobalContext context)
 	{
@@ -65,9 +75,9 @@ class Builder {
 				error('Can\'t find Unity version: ' + unityVersion + '. Please, check Notion for more information: https://www.notion.so/helloio/Unity-02ce4afae3f24fdc8565f96d7d37a6c0')
 			}
 
-			// Запуск сборки
-			bat label: '', script: context.UnityFolder + unityVersion + '/Editor/unity.exe -projectPath "' + context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + 
-			'" -executeMethod ' + context.UnityExecuteMethod + ' -logFile "UnityEditor.log" -buildTarget ' + buildTarget + ' -quit -batchmode -quitTimeout 6000'
+			// Запуск сборки              
+			script.bat label: '', script: context.UnityFolder + unityVersion + '/Editor/unity.exe -projectPath "' + context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + 
+			    '" -executeMethod ' + context.UnityExecuteMethod + ' -logFile "UnityEditor.log" -buildTarget ' + buildTarget + ' -quit -batchmode -quitTimeout 6000'
 			
 			// Проверка на наличие папки с билдом
 			def folderPath = "${script.params.WORKSPACE}/${JOB_BASE_NAME}/Builds/" + context.BuildName
