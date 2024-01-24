@@ -69,7 +69,7 @@ class Builder {
 			def unityExe = context.UnityFolder + unityVersion + '/Editor/unity.exe'
 
 			// Проверка на наличие версии Unity
-			def exists = fileExists unityExe
+			def exists = script.fileExists unityExe
 			if (!exists)
 			{
 				error('Can\'t find Unity version: ' + unityVersion + '. Please, check Notion for more information: https://www.notion.so/helloio/Unity-02ce4afae3f24fdc8565f96d7d37a6c0')
@@ -84,7 +84,7 @@ class Builder {
 			if (buildTarget == "Android")
 				folderPath = context.ProjectFolder + '\\Builds\\' + context.BuildName + '.apk'
 			
-			def buildExists = fileExists folderPath 
+			def buildExists = script.fileExists folderPath 
 			if (!buildExists)
 				throw new Exception("Build folder doesnt exists")
 		}
