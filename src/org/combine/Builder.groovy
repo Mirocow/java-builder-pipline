@@ -27,25 +27,25 @@ class Builder {
 		}
 		
 		def logFile = "\"${script.params.WORKSPACE}/UnityEditor.log\""
-        println "Logfile: ${logFile}"
+		println "Logfile: ${logFile}"
 		deleteFile(context, logFile)
 	}
 
 	def deleteFile(GlobalContext context, String path)
 	{
-        if (script.fileExists(path)) {
-            // echo "File ${path} already exists. Deleting"
-            new File(path).delete()
-        } else {
-            // echo "File ${path} does not exist."
-        }
-    }
+		if (script.fileExists(path)) {
+			// echo "File ${path} already exists. Deleting"
+			new File(path).delete()
+		} else {
+			// echo "File ${path} does not exist."
+		}
+	}
 
 	def GetUnityVersion(GlobalContext context)
 	{
 		// TODO: пока не работает чтение файлов, на маке задаем версию Unity в контексте
 		if (context.ExecutingPlatform == "Mac")
-				return context.MacUnityVersion
+			return context.MacUnityVersion
 		if (context.OverrideUnityVersion != '')
 			return context.OverrideUnityVersion
 		
