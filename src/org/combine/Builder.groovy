@@ -95,6 +95,7 @@ class Builder {
                 ' -executeMethod ' + context.UnityExecuteMethod + 
                 ' -targetPath "' + "${script.Workspace}\\Build" + '"' +
                 ' -logFile "' + "${script.Workspace}\\Build\\Build.log" + '"' +
+		' -gradlePath "' + "${script.Workspace}\\gradle-6.7.1" + '"' +
                 ' -quit -batchmode -quitTimeout 6000'
             
             // Проверка на наличие папки с билдом
