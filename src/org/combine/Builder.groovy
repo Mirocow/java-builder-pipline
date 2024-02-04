@@ -98,7 +98,7 @@ class Builder {
                 ' -quit -batchmode -quitTimeout 6000'
             
             // Проверка на наличие папки с билдом
-            def folderPath = "${script.Workspace}\\Build\\" + context.BuildName
+            def folderPath = "${script.Workspace}\\Build\\" + context.ApplicationName
             
             if (buildTarget == "Android")
                 folderPath = folderPath + '.apk'
