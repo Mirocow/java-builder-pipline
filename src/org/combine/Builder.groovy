@@ -92,8 +92,8 @@ class Builder {
             script.bat label: '', script: '"' + context.UnityFolder + unityVersion + '\\Editor\\unity.exe" ' +
                 ' -appName ' + context.ApplicationName +
                 ' -projectPath "' + "${script.Workspace}" + '"' +
-                    ' -executeMethod ' + context.UnityExecuteMethod + 
-                    ' -targetPath "' + "${script.Workspace}\\Build" + '"' +
+                ' -executeMethod ' + context.UnityExecuteMethod + 
+                ' -targetPath "' + "${script.Workspace}\\Build" + '"' +
                 ' -logFile "' + "${script.Workspace}\\Build\\Build.log" + '"' +
                 ' -quit -batchmode -quitTimeout 6000'
             
