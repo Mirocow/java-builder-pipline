@@ -26,7 +26,7 @@ class Builder {
             }
         }
         
-        def logFile = "\"${script.Workspace}\\UnityEditor.log\""
+        def logFile = "\"${script.Workspace}\\Build\\Build.log\""
         println "Logfile: ${logFile}"
         deleteFile(context, logFile)
 
