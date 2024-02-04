@@ -14,13 +14,13 @@ class Builder {
 	def CleanUpBeforeBuild(GlobalContext context)
 	{
 		println "CleanUpBeforeBuild"
-		script.dir(context.ProjectFolder + '/Builds') 
+		script.dir("${script.params.WORKSPACE}\\Build") 
 		{
 			script.deleteDir()
 		}
 		if (script.params.CleanLibrary)
 		{
-			script.dir(context.ProjectFolder + '/Library') 
+			script.dir("${script.params.WORKSPACE}\\Library") 
 			{
 				script.deleteDir()
 			}
@@ -46,10 +46,11 @@ class Builder {
 		// TODO: пока не работает чтение файлов, на маке задаем версию Unity в контексте
 		if (context.ExecutingPlatform == "Mac")
 			return context.MacUnityVersion
+		
 		if (context.OverrideUnityVersion != '')
 			return context.OverrideUnityVersion
 		
-		def fileName = context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + '/ProjectSettings/ProjectVersion.txt'
+		def fileName = script.params.WORKSPACE + '/ProjectSettings/ProjectVersion.txt'
 		println fileName
 		def file = script.readFile fileName
 		def lines = file.readLines()
@@ -78,15 +79,17 @@ class Builder {
 			// Запуск сборки              
 			script.bat label: '', script: context.UnityFolder + unityVersion + '/Editor/unity.exe ' +
 				' -appName ' + context.BuildName +
-				' -projectPath "' + context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + '"' +
+				' -projectPath "' + "${script.params.WORKSPACE}" + '"' +
 			    	' -executeMethod ' + context.UnityExecuteMethod + 
-			    	' -targetPath "' + "${script.params.WORKSPACE}/${JOB_BASE_NAME}/Build" + '"' +
+			    	' -targetPath "' + "${script.params.WORKSPACE}\\Build" + '"' +
+				' -logFile "' + "${script.params.WORKSPACE}\\Build\\Build.log" + '"' +
 				' -quit -batchmode -quitTimeout 6000'
 			
 			// Проверка на наличие папки с билдом
-			def folderPath = "${script.params.WORKSPACE}\\${JOB_BASE_NAME}\\Build\\" + context.BuildName
+			def folderPath = "${script.params.WORKSPACE}\\Build\\" + context.BuildName
+			
 			if (buildTarget == "Android")
-				folderPath = context.ProjectFolder + '\\Build\\' + context.BuildName + '.apk'
+				folderPath = folderPath + '.apk'
 			
 			def buildExists = script.fileExists folderPath 
 			if (!buildExists)
