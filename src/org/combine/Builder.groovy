@@ -76,15 +76,17 @@ class Builder {
 			}
 
 			// Запуск сборки              
-			script.bat label: '', script: context.UnityFolder + unityVersion + '/Editor/unity.exe -projectPath "' + 
-			context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + 
-			    '" -executeMethod ' + context.UnityExecuteMethod + 
-			    ' -logFile "UnityEditor.log" -buildTarget ' + buildTarget + ' -quit -batchmode -quitTimeout 6000'
+			script.bat label: '', script: context.UnityFolder + unityVersion + '/Editor/unity.exe ' +
+				' -appName ' + context.BuildName +
+				' -projectPath "' + context.GetUnityProjectAbsolutePath(script.params.WORKSPACE) + '"' +
+			    	' -executeMethod ' + context.UnityExecuteMethod + 
+			    	' -targetPath "' + "${script.params.WORKSPACE}/${JOB_BASE_NAME}/Build" + '"' +
+				' -quit -batchmode -quitTimeout 6000'
 			
 			// Проверка на наличие папки с билдом
-			def folderPath = "${script.params.WORKSPACE}/${JOB_BASE_NAME}/Builds/" + context.BuildName
+			def folderPath = "${script.params.WORKSPACE}\\${JOB_BASE_NAME}\\Build\\" + context.BuildName
 			if (buildTarget == "Android")
-				folderPath = context.ProjectFolder + '\\Builds\\' + context.BuildName + '.apk'
+				folderPath = context.ProjectFolder + '\\Build\\' + context.BuildName + '.apk'
 			
 			def buildExists = script.fileExists folderPath 
 			if (!buildExists)
