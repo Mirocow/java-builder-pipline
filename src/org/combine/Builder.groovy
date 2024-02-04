@@ -14,19 +14,19 @@ class Builder {
     def CleanUpBeforeBuild(GlobalContext context)
     {
         println "CleanUpBeforeBuild"
-        script.dir("${script.Workspace}\\Build") 
+        script.dir("${script.Workspace}/Build") 
         {
             script.deleteDir()
         }
         if (script.params.CleanLibrary)
         {
-            script.dir("${script.Workspace}\\Library") 
+            script.dir("${script.Workspace}/Library") 
             {
                 script.deleteDir()
             }
         }
         
-        def logFile = "\"${script.Workspace}\\Build\\Build.log\""
+        def logFile = "\"${script.Workspace}/Build/Build.log\""
         println "Logfile: ${logFile}"
         deleteFile(context, logFile)
 
@@ -62,7 +62,7 @@ class Builder {
         if (context.OverrideUnityVersion != '')
             return context.OverrideUnityVersion
         
-        def fileName = "${script.Workspace}\\ProjectSettings\\ProjectVersion.txt"
+        def fileName = "${script.Workspace}/ProjectSettings/ProjectVersion.txt"
         println fileName
         def file = script.readFile fileName
         def lines = file.readLines()
@@ -79,7 +79,7 @@ class Builder {
             CleanUpBeforeBuild(context)
             
             def unityVersion = GetUnityVersion(context)
-            def unityExe = context.UnityFolder + unityVersion + '\\Editor\\unity.exe'
+            def unityExe = context.UnityFolder + unityVersion + '/Editor/unity.exe'
 
             // Проверка на наличие версии Unity
             def exists = script.fileExists unityExe
@@ -93,12 +93,12 @@ class Builder {
                 ' -appName ' + context.ApplicationName +
                 ' -projectPath "' + "${script.Workspace}" + '"' +
                 ' -executeMethod ' + context.UnityExecuteMethod + 
-                ' -targetPath "' + "${script.Workspace}\\Build" + '"' +
-                ' -logFile "' + "${script.Workspace}\\Build\\Build.log" + '"' +
+                ' -targetPath "' + "${script.Workspace}/Build" + '"' +
+                ' -logFile "' + "${script.Workspace}/Build/Build.log" + '"' +
                 ' -quit -batchmode -quitTimeout 6000'
             
             // Проверка на наличие папки с билдом
-            def folderPath = "${script.Workspace}\\Build\\" + context.ApplicationName
+            def folderPath = "${script.Workspace}/Build/" + context.ApplicationName
             
             if (buildTarget == "Android")
                 folderPath = folderPath + '.apk'
