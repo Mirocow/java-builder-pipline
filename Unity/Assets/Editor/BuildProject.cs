@@ -214,9 +214,9 @@ public class BuildProject
             string path = Application.dataPath.Substring(0, Application.dataPath.Length - datapath.Length);
             result = Path.Combine(path, fileName);
         }
-        else if( Application.platform == RuntimePlatform.WindowsPlayer )
+        else if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
-            result = Path.Combine( Application.dataPath, fileName );
+            result = Path.Combine(Application.dataPath, fileName);
         }
         else
         {
