@@ -50,7 +50,7 @@ class Builder {
 		if (context.OverrideUnityVersion != '')
 			return context.OverrideUnityVersion
 		
-		def fileName = "script.Workspace + '\\ProjectSettings\\ProjectVersion.txt"
+		def fileName = "{script.Workspace}\\ProjectSettings\\ProjectVersion.txt"
 		println fileName
 		def file = script.readFile fileName
 		def lines = file.readLines()
