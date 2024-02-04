@@ -9,8 +9,8 @@ class GlobalContext
 	def UnityExecuteMethod = 'BuildProject.BuildWindows'
 	def MacUnityVersion = '2022.3.17f1'
 	def OverrideUnityVersion = ''
-	def Workspace = "${script.params.WORKSPACE}"
-	def ApplicationName = "${script.params.APPNAME}"
+	def Workspace = script.params.WORKSPACE || pwd()
+	def ApplicationName = script.params.APPNAME || 'App'
 
 	// Переменные, устанавливаемые во время сборки
 	def ExecutingPlatform = "Windows"
