@@ -13,7 +13,6 @@ class GlobalContext
 	// Переменные, устанавливаемые во время сборки
 	def ExecutingPlatform = "Windows"
 	def errorMessage = ""
-	def BuildName = "unnamed_build" // Устанавливается в шаге Build
 	def ArtifactsList = [] // Устанавливается при архивации артефактов, используется при нотификации
 	def BranchName = "/main" // Устанавливается перед чекаутом
 	
