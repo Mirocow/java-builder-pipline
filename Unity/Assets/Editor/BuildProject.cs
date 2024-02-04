@@ -78,7 +78,7 @@ public class BuildProject
 		
         string targetPath = GetArgByName("targetPath");
         if(targetPath != null){
-            returnValue.targetPath = targetPath.TrimEnd(Path.DirectorySeparatorChar);;
+            returnValue.targetPath = targetPath.TrimEnd(Path.DirectorySeparatorChar);
         }
 
         returnValue.targetPath = returnValue.targetPath + Path.DirectorySeparatorChar;
