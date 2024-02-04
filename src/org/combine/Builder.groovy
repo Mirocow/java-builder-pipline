@@ -89,7 +89,7 @@ class Builder {
             }
 
             // Запуск сборки              
-            script.bat label: '', script: '"' + unityExe +
+            script.bat label: '', script: '"' + unityExe + '"' +
                 ' -appName ' + context.ApplicationName +
                 ' -projectPath "' + "${script.Workspace}" + '"' +
                 ' -executeMethod ' + context.UnityExecuteMethod + 
