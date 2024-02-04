@@ -129,13 +129,13 @@ public class BuildProject
     // ------------------------------------------------------------------------	
     private static void ChangeGradle()
     {
-		EditorPrefs.SetBool("JdkUseEmbedded", true);
-		EditorPrefs.SetBool("NdkUseEmbedded", true);
-		EditorPrefs.SetBool("SdkUseEmbedded", true);
-		EditorPrefs.SetBool("GradleUseEmbedded", false);
-		EditorPrefs.SetBool("AndroidGradleStopDaemonsOnExit", true);
+        EditorPrefs.SetBool("JdkUseEmbedded", true);
+        EditorPrefs.SetBool("NdkUseEmbedded", true);
+        EditorPrefs.SetBool("SdkUseEmbedded", true);
+        EditorPrefs.SetBool("GradleUseEmbedded", false);
+        EditorPrefs.SetBool("AndroidGradleStopDaemonsOnExit", true);
 		
-		var args = FindArgs();
+        var args = FindArgs();
         EditorPrefs.SetString("GradlePath", args.gradlePath);
         System.Console.WriteLine("[JenkinsBuild] PreProcessBuild - changed path: "+EditorPrefs.GetString("GradlePath"));
     }	
