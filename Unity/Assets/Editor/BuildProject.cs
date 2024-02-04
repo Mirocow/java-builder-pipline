@@ -13,7 +13,7 @@ using System.IO;
 // "unity.exe" \
 //		-projectPath "C:/Users/Admin/Projects/MyProject" \
 //		-executeMethod BuildProject.BuildAndroid \
-//		-targetDir "C:\Users\Admin\Projects\Build"
+//		-targetPath "C:\Users\Admin\Projects\Build"
 // ------------------------------------------------------------------------
 public class BuildProject 
 {
@@ -25,7 +25,7 @@ public class BuildProject
     {
         var args = FindArgs();
  
-        string fullPathAndName = args.targetDir + args.appName + ".apk";
+        string fullPathAndName = args.targetPath + args.appName + ".apk";
         Build(fullPathAndName, BuildTargetGroup.Standalone, BuildTarget.Android, BuildOptions.None);
     }  
   
@@ -36,7 +36,7 @@ public class BuildProject
     {
         var args = FindArgs();
  
-        string fullPathAndName = args.targetDir + args.appName + ".app";
+        string fullPathAndName = args.targetPath + args.appName + ".app";
         Build(fullPathAndName, BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX, BuildOptions.None);
     }
 	
@@ -44,7 +44,7 @@ public class BuildProject
     {
         var args = FindArgs();
 		
-        string fullPathAndName = args.targetDir + args.appName;
+        string fullPathAndName = args.targetPath + args.appName;
         Build(fullPathAndName, BuildTargetGroup.Standalone, BuildTarget.iOS, BuildOptions.None);
     }	
  
@@ -55,7 +55,7 @@ public class BuildProject
     {
         var args = FindArgs();
  
-        string fullPathAndName = args.targetDir + args.appName;
+        string fullPathAndName = args.targetPath + args.appName;
         Build(fullPathAndName, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows, BuildOptions.None);
     }
  
@@ -66,7 +66,7 @@ public class BuildProject
     {
         var args = FindArgs();
  
-        string fullPathAndName = args.targetDir + args.appName;
+        string fullPathAndName = args.targetPath + args.appName;
         Build(fullPathAndName, BuildTargetGroup.Standalone, BuildTarget.StandaloneLinux64, BuildOptions.None);
     }
 
@@ -76,16 +76,16 @@ public class BuildProject
     {
         var returnValue = new Args();
 		
-        string targetDir = GetArgByName("targetDir");
-        if(targetDir != null){
-            returnValue.targetDir = targetDir.TrimEnd(Path.DirectorySeparatorChar);;
+        string targetPath = GetArgByName("targetPath");
+        if(targetPath != null){
+            returnValue.targetPath = targetPath.TrimEnd(Path.DirectorySeparatorChar);;
         }
 
-        returnValue.targetDir = returnValue.targetDir + Path.DirectorySeparatorChar;
+        returnValue.targetPath = returnValue.targetPath + Path.DirectorySeparatorChar;
 		
-        string gradleDir = GetArgByName("gradleDir");
-        if(gradleDir != null){
-            returnValue.gradleDir = gradleDir;
+        string gradlePath = GetArgByName("gradlePath");
+        if(gradlePath != null){
+            returnValue.gradlePath = gradlePath;
         }
 
         string appName = GetArgByName("appName");
@@ -136,7 +136,7 @@ public class BuildProject
 		EditorPrefs.SetBool("AndroidGradleStopDaemonsOnExit", true);
 		
 		var args = FindArgs();
-        EditorPrefs.SetString("GradlePath", args.gradleDir);
+        EditorPrefs.SetString("GradlePath", args.gradlePath);
         System.Console.WriteLine("[JenkinsBuild] PreProcessBuild - changed path: "+EditorPrefs.GetString("GradlePath"));
     }	
   
@@ -233,7 +233,7 @@ public class BuildProject
     private class Args
     {			
         public string appName = "AppName";
-        public string targetDir = GetDocumentFilePath("");
-        public string gradleDir = GetDocumentFilePath("gradle-6.7.1");
+        public string targetPath = GetDocumentFilePath("");
+        public string gradlePath = GetDocumentFilePath("gradle-6.7.1");
     }
 }
