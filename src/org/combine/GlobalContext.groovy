@@ -9,7 +9,7 @@ class GlobalContext
 	def UnityExecuteMethod = 'BuildProject.BuildWindows'
 	def MacUnityVersion = '2022.3.17f1'
 	def OverrideUnityVersion = ''
-	def Workspace = pwd()
+	def Workspace = ''
 	def ApplicationName = 'App'
 
 	// Переменные, устанавливаемые во время сборки
