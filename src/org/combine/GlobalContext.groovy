@@ -31,7 +31,7 @@ class GlobalContext
             Workspace = script.params.WORKSPACE
         }
 
-        if(!script.Workspace){
+        if(!Workspace){
             Workspace = script.pwd()
         }	    
     }	
