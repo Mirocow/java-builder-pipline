@@ -20,7 +20,7 @@ class GlobalContext
 
     private final Script script
 
-    Builder(Script script) {
+    GlobalContext(Script script) {
         this.script = script
     }
 	
