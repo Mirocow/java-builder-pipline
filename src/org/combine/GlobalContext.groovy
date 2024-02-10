@@ -3,13 +3,6 @@ package org.combine
 
 class GlobalContext
 {
-
-    private final Script script
-	
-    GlobalContext(Script script) {
-        this.script = script
-    }
-	
     // Unity
     def UnityFolder = 'C:\\Program Files\\Unity\\Hub\\Editor\\'
     def MacUnityFolder = '/applications/unity/hub/editor/'
@@ -24,17 +17,23 @@ class GlobalContext
     def errorMessage = ""
     def ArtifactsList = [] // Устанавливается при архивации артефактов, используется при нотификации
     def BranchName = "/main" // Устанавливается перед чекаутом
+	
+    private final Script script
+	
+    GlobalContext(Script script) {
+        this.script = script
 
-    if(script.params.APPNAME){
-        ApplicationName = script.params.APPNAME
-    }
+        if(script.params.APPNAME){
+            ApplicationName = script.params.APPNAME
+        }
 
-    if(script.params.WORKSPACE){
-        Workspace = script.params.WORKSPACE
-    }
+        if(script.params.WORKSPACE){
+            Workspace = script.params.WORKSPACE
+        }
 
-    if(!script.Workspace){
-        Workspace = script.pwd()
+        if(!script.Workspace){
+            Workspace = script.pwd()
+        }	    
     }	
 	
 }
