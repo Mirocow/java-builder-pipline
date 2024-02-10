@@ -29,18 +29,6 @@ class Builder {
         def logFile = "\"${script.Workspace}\\Build/Build.log\""
         println "Logfile: ${logFile}"
         deleteFile(context, logFile)
-
-	if(script.params.APPNAME){
-            context.ApplicationName = script.params.APPNAME
-	}
-
-	if(script.params.WORKSPACE){
-            script.Workspace = script.params.WORKSPACE
-	}
-
-	if(!script.Workspace){
-            script.Workspace = script.pwd()
-	}
     }
 
     def deleteFile(GlobalContext context, String path)
