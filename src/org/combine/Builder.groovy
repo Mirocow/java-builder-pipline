@@ -14,21 +14,33 @@ class Builder {
     def CleanUpBeforeBuild(GlobalContext context)
     {
         println "CleanUpBeforeBuild"
-        script.dir("${script.Workspace}\\Build") 
+        script.dir("${context.Workspace}\\Build") 
         {
             script.deleteDir()
         }
         if (script.params.CleanLibrary)
         {
-            script.dir("${script.Workspace}\\Library") 
+            script.dir("${context.Workspace}\\Library") 
             {
                 script.deleteDir()
             }
         }
         
-        def logFile = "\"${script.Workspace}\\Build/Build.log\""
+        def logFile = "\"${context.Workspace}\\Build/Build.log\""
         println "Logfile: ${logFile}"
         deleteFile(context, logFile)
+
+        if(script.params.APPNAME){
+            context.ApplicationName = script.params.APPNAME
+        }
+
+        if(script.params.WORKSPACE){
+            context.Workspace = script.params.WORKSPACE
+        }
+
+        if(!context.Workspace){
+            context.Workspace = script.pwd()
+        }	    
 
     }
 
@@ -51,7 +63,7 @@ class Builder {
         if (context.OverrideUnityVersion != '')
             return context.OverrideUnityVersion
         
-        def fileName = "${script.Workspace}\\ProjectSettings\\ProjectVersion.txt"
+        def fileName = "${context.Workspace}\\ProjectSettings\\ProjectVersion.txt"
         println fileName
         def file = script.readFile fileName
         def lines = file.readLines()
@@ -80,11 +92,11 @@ class Builder {
             // Запуск сборки              
             script.bat label: '', script: '"' + unityExe + '"' +
 		' -appName ' + context.ApplicationName +
-		' -projectPath "' + "${script.Workspace}" + '"' +
+		' -projectPath "' + "${context.Workspace}" + '"' +
 		' -executeMethod ' + context.UnityExecuteMethod + 
-		' -targetPath "' + "${script.Workspace}\\Build" + '"' +
-		' -logFile "' + "${script.Workspace}\\Build\\Build.log" + '"' +
-		' -gradlePath "' + "${script.Workspace}\\gradle-6.7.1" + '"' +
+		' -targetPath "' + "${context.Workspace}\\Build" + '"' +
+		' -logFile "' + "${context.Workspace}\\Build\\Build.log" + '"' +
+		' -gradlePath "' + "${context.Workspace}\\gradle-6.7.1" + '"' +
 		' -quit -batchmode -quitTimeout 6000'
             
             // Проверка на наличие папки с билдом
