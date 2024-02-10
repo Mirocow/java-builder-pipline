@@ -25,15 +25,15 @@ class GlobalContext
     }
 	
     if(script.params.APPNAME){
-        this.ApplicationName = script.params.APPNAME
+        this.script.ApplicationName = this.script.params.APPNAME
     }
 
     if(script.params.WORKSPACE){
-        this.Workspace = script.params.WORKSPACE
+        this.script.Workspace = this.script.params.WORKSPACE
     }
 
-        if(!this.Workspace){
-        this.Workspace = script.pwd()
+    if(!this.Workspace){
+        this.script.Workspace = this.script.pwd()
     }	
 }
 
