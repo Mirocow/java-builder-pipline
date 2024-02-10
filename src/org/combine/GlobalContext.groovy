@@ -17,24 +17,23 @@ class GlobalContext
     def errorMessage = ""
     def ArtifactsList = [] // Устанавливается при архивации артефактов, используется при нотификации
     def BranchName = "/main" // Устанавливается перед чекаутом
-	
+
     private final Script script
-	
-    GlobalContext(Script script) {
+
+    Builder(Script script) {
         this.script = script
-
-        if(script.params.APPNAME){
-            ApplicationName = script.params.APPNAME
-        }
-
-        if(script.params.WORKSPACE){
-            Workspace = script.params.WORKSPACE
-        }
-
-        if(!Workspace){
-            Workspace = script.pwd()
-        }	    
-    }	
+    }
 	
+    if(script.params.APPNAME){
+        this.ApplicationName = script.params.APPNAME
+    }
+
+    if(script.params.WORKSPACE){
+        this.Workspace = script.params.WORKSPACE
+    }
+
+        if(!this.Workspace){
+        this.Workspace = script.pwd()
+    }	
 }
 
