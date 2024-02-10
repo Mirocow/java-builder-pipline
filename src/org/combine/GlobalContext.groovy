@@ -24,11 +24,11 @@ class GlobalContext
         this.script = script
     }
 	
-    if(script.params.APPNAME){
+    if(this.script.params.APPNAME){
         this.script.ApplicationName = this.script.params.APPNAME
     }
 
-    if(script.params.WORKSPACE){
+    if(this.script.params.WORKSPACE){
         this.script.Workspace = this.script.params.WORKSPACE
     }
 
